@@ -275,7 +275,13 @@ h3 { font-size: 1.1rem; margin: 0 0 .4em; }
   .is-pair:hover .tag::after { content: "After"; }
 }
 @media (hover: none) {
-  .gallery .tag::after { content: "Tap to compare"; }
+  /* No hover on touch, so the comparison is dropped entirely: show the
+     finished job on its own. Hiding the "before" frame also lets browsers
+     that skip offscreen lazy images avoid fetching it (Chrome does; Firefox
+     may still load it). */
+  .is-pair .f-before { display: none; }
+  .is-pair .f-after { opacity: 1; will-change: auto; }
+  .gallery .tag { display: none; }
 }
 
 .more { color: var(--ink-mute); margin: 2.4rem 0 0; font-size: .93rem; }

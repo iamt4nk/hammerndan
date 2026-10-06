@@ -127,10 +127,6 @@
       <header class="sec-head">
         <p class="eyebrow">03 — Recent Jobs</p>
         <h2>The work</h2>
-        <p class="sub">
-          Hover a <strong>Before&nbsp;&rarr;&nbsp;After</strong> tile to see the
-          finished job, or open any photo for a closer look.
-        </p>
       </header>
 
       <ul class="gallery">
@@ -386,7 +382,13 @@
     var after = shot.getAttribute("data-after");
     var tileImgs = shot.querySelectorAll("img");
 
-    if (before && after) {
+    /* Touch devices never get the comparison. The tile already shows the
+       finished job, so the lightbox opens that one photo on its own.
+       Checked per click so rotating or resizing is handled. */
+    var canCompare = before && after &&
+      !(window.matchMedia && window.matchMedia("(hover: none)").matches);
+
+    if (canCompare) {
       box.classList.remove("is-single");
       imgA.src = before;
       imgB.src = after;
@@ -395,7 +397,8 @@
     } else {
       box.classList.add("is-single");
       imgA.src = shot.getAttribute("href");
-      imgA.alt = tileImgs[0] ? tileImgs[0].alt : "";
+      var only = shot.querySelector("img.f-after") || tileImgs[0];
+      imgA.alt = only ? only.alt : "";
       imgB.removeAttribute("src");
       imgB.alt = "";
     }
