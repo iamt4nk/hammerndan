@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hammer &amp; Dan — three website options</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="images/logo.jpg">
+<style>
+  :root {
+    --red: #C40203; --ink: #111216; --ink-soft: #42454D;
+    --paper: #FBFBFB; --sand: #F3F0EC; --line: #E2DED8;
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 48px 24px 72px;
+    font: 17px/1.65 var(--sans); color: var(--ink-soft);
+    background: var(--paper); -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; }
+  .head { text-align: center; margin-bottom: 44px; }
+  .head img { width: 96px; border-radius: 50%; margin: 0 auto 20px; display: block; }
+  h1 {
+    font-family: var(--serif); font-size: clamp(1.7rem, 4vw, 2.4rem);
+    color: var(--ink); margin: 0 0 .4em; letter-spacing: -.015em;
+  }
+  .sub { max-width: 52ch; margin: 0 auto; }
+  .eyebrow {
+    font-size: .72rem; font-weight: 700; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--red); margin: 0 0 1rem;
+  }
+  .opts {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  }
+  .opt {
+    background: #fff; border: 1px solid var(--line); border-radius: 10px;
+    padding: 26px 24px 24px; display: flex; flex-direction: column;
+  }
+  .opt .tag {
+    font-family: var(--serif); font-size: 1.6rem; font-weight: 700;
+    color: var(--red); line-height: 1; margin-bottom: 10px;
+  }
+  .opt h2 {
+    font-family: var(--serif); font-size: 1.25rem; color: var(--ink);
+    margin: 0 0 .5em; letter-spacing: -.01em;
+  }
+  .opt p { margin: 0 0 1.6rem; font-size: .95rem; flex: 1; }
+  .opt a {
+    display: inline-block; text-align: center;
+    background: var(--red); color: #fff; text-decoration: none;
+    font-weight: 650; font-size: .95rem;
+    padding: 12px 22px; border-radius: 8px;
+    border: 2px solid var(--red);
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .opt a:hover { background: #9E0102; border-color: #9E0102; }
+  .note {
+    margin: 44px auto 0; max-width: 60ch; text-align: center;
+    font-size: .9rem; color: #767A84;
+    background: var(--sand); border-radius: 10px; padding: 20px 24px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <img src="images/logo.jpg" alt="Hammer &amp; Dan logo" width="96" height="96">
+    <p class="eyebrow">Hammer &amp; Dan</p>
+    <h1>Three website options</h1>
+    <p class="sub">
+      Same content and the same photos in all three — only the layout changes.
+      Have a look on a phone as well as a computer, since most people will find
+      the site on a phone.
+    </p>
+  </div>
+
+  <ul class="opts">
+    <li class="opt">
+      <span class="tag">A</span>
+      <h2>Classic</h2>
+      <p>
+        Logo front and centre, services in cards, everything down the middle.
+        The most familiar, straightforward version.
+      </p>
+      <a href="a/">Open option A</a>
+    </li>
+    <li class="opt">
+      <span class="tag">B</span>
+      <h2>Bold</h2>
+      <p>
+        Dark top half with a photo of you working, services in a numbered list,
+        photos on a black background, phone number big and red at the bottom.
+      </p>
+      <a href="b/">Open option B</a>
+    </li>
+    <li class="opt">
+      <span class="tag">C</span>
+      <h2>Clean</h2>
+      <p>
+        A menu bar fixed down the left with your phone number always on screen,
+        lots of white space, photos in a tighter grid.
+      </p>
+      <a href="c/">Open option C</a>
+    </li>
+  </ul>
+
+  <p class="note">
+    In the photo section, hovering over a tile marked <strong>Before</strong>
+    swaps it to the finished job — tap it on a phone. Clicking opens both
+    side by side.
+  </p>
+
+</div>
+</body>
+</html>
