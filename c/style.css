@@ -257,31 +257,32 @@ h3 { font-size: 1.1rem; margin: 0 0 .4em; }
   background: linear-gradient(to top, rgba(17,18,22,.88) 0%, rgba(17,18,22,.55) 55%, transparent 100%);
 }
 
+/* Compare marker: a half-filled circle, the conventional before/after
+   symbol. No words - a text badge shouted on a phone, and the icon says the
+   same thing quietly. It rotates as the photo swaps on hover. */
 .gallery .tag {
   position: absolute; right: 10px; top: 10px; z-index: 3;
-  background: rgba(17,18,22,.85);
-  color: #fff;
-  font-size: .6rem; font-weight: 700;
-  letter-spacing: .14em; text-transform: uppercase;
-  padding: 6px 10px; border-radius: var(--r); line-height: 1;
-  transition: background .25s ease;
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,.95);
+  background:
+    linear-gradient(to right,
+      rgba(255,255,255,.95) 0 50%, rgba(255,255,255,0) 50% 100%),
+    rgba(17,18,22,.4);
+  box-shadow: 0 1px 5px rgba(17,18,22,.45);
+  transition: transform .35s ease;
 }
-.gallery .tag::after { content: "Before"; }
 
 @media (hover: hover) {
   .gallery li:hover .frames img { transform: scale(1.05); }
   .is-pair:hover .f-after { opacity: 1; }
-  .is-pair:hover .tag { background: var(--red); }
-  .is-pair:hover .tag::after { content: "After"; }
+  .is-pair:hover .tag { transform: rotate(180deg); }
 }
 @media (hover: none) {
   /* No hover on touch, so the comparison is dropped entirely: show the
-     finished job on its own. Hiding the "before" frame also lets browsers
-     that skip offscreen lazy images avoid fetching it (Chrome does; Firefox
-     may still load it). */
+     finished job at rest. Tapping still opens the side-by-side comparison -
+     that is the only way a phone can see the before shot. */
   .is-pair .f-before { display: none; }
   .is-pair .f-after { opacity: 1; will-change: auto; }
-  .gallery .tag { display: none; }
 }
 
 .more { color: var(--ink-mute); margin: 2.4rem 0 0; font-size: .93rem; }

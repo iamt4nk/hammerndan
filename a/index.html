@@ -485,11 +485,9 @@
     var after = shot.getAttribute("data-after");
     var tileImgs = shot.querySelectorAll("img");
 
-    /* Touch devices never get the comparison. The tile already shows the
-       finished job, so the lightbox opens that one photo on its own.
-       Checked per click so rotating or resizing is handled. */
-    var canCompare = before && after &&
-      !(window.matchMedia && window.matchMedia("(hover: none)").matches);
+    /* Pairs always open as a comparison, touch included - tapping is the
+       only way a phone can reach the before shot. */
+    var canCompare = before && after;
 
     if (canCompare) {
       /* Pair: before on the left, after on the right. */
