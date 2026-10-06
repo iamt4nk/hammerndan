@@ -20,6 +20,12 @@
   --paper:      #FBFBFB;
   --sand:       #F3F0EC;
   --line:       #E6E2DC;
+  /* Peak tone for the fading rules. --line sits ~21 RGB units off --paper,
+     which is too little range for a taper to be visible at 1px — the gradient
+     was mathematically there and perceptually absent. This roughly doubles the
+     range so the rule has something to fade from. Dial it toward --line for a
+     quieter rule, away for a more pronounced fade. */
+  --rule:       #CFC8BC;
   /* Secondary-button boundary: 3.5:1 against --paper outside and 3.19:1 against
      the --sand fill inside, so the edge clears the 3:1 UI minimum on both
      sides. The old #CFC8BF sat at 1.6:1, and the fill alone could not rescue
@@ -178,16 +184,11 @@ a:hover { color: var(--red-dark); }
   grid-template-columns: minmax(0, 1180px);
 }
 
-/* The divider is a gradient rather than a border so it can fade out. It holds
-   solid from the rail edge and dissolves across the last third, which lets the
-   rule stop without the hard terminus of a cut-off border. */
+/* Runs the full width of the column, so it stays solid — an edge-to-edge rule
+   has no arbitrary terminus and nothing to fade toward. */
 .sec {
   padding: clamp(56px, 7vw, 104px) clamp(28px, 5vw, 76px);
-  background-image: linear-gradient(to right,
-    var(--line) 0%, var(--line) 62%, transparent 100%);
-  background-size: 100% 1px;
-  background-repeat: no-repeat;
-  background-position: left top;
+  border-top: 1px solid var(--line);
 }
 
 .intro {
@@ -294,12 +295,16 @@ h3 { font-size: 1.3rem; margin: 0 0 .45em; }
 .svc-item:last-child { grid-column: 1 / -1; }
 .svc-item:last-child p { max-width: 62ch; }
 
-/* Same treatment, but these rules sit inside the column rather than running off
-   the edge of it, so they fade at both ends and hold solid through the middle. */
+/* These stop inside the layout rather than running to an edge, so they taper at
+   both ends. The ramps are absolute lengths, not percentages: a percentage ramp
+   stretches with the rule, so the same gradient read clearly on a narrow phone
+   rule and vanished across a wide desktop one. 80px fades identically at every
+   width. */
 .svc-item {
   padding: 24px 0;
   background-image: linear-gradient(to right,
-    transparent 0%, var(--line) 14%, var(--line) 86%, transparent 100%);
+    transparent 0, var(--rule) 80px,
+    var(--rule) calc(100% - 80px), transparent 100%);
   background-size: 100% 1px;
   background-repeat: no-repeat;
   background-position: left top;
