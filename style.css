@@ -6,14 +6,25 @@
    ========================================================================== */
 
 :root {
+  /* The page commits to a single light treatment, so say so — otherwise
+     browser-level UI renders dark against it. */
+  color-scheme: light;
+
   --red:        #C40203;
   --red-dark:   #9E0102;
   --ink:        #111216;
   --ink-soft:   #42454D;
-  --ink-mute:   #767A84;
+  /* Was #767A84: 4.15:1 on --paper and 3.78:1 on --sand, both under AA for
+     normal text. This keeps the cool-grey cast at 5.09:1 / 4.63:1. */
+  --ink-mute:   #686C75;
   --paper:      #FBFBFB;
   --sand:       #F3F0EC;
   --line:       #E6E2DC;
+  /* Secondary-button boundary: 3.5:1 against --paper outside and 3.19:1 against
+     the --sand fill inside, so the edge clears the 3:1 UI minimum on both
+     sides. The old #CFC8BF sat at 1.6:1, and the fill alone could not rescue
+     it — sand and paper are near-identical in luminance. */
+  --line-firm:  #8F8579;
 
   --serif: Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
   --sans:  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -48,7 +59,7 @@ html {
 body {
   margin: 0;
   font-family: var(--sans);
-  font-size: 17px;
+  font-size: 1.0625rem;   /* 17px, but on the same rem basis as the rest of the scale */
   line-height: 1.68;
   color: var(--ink-soft);
   background: var(--paper);
@@ -66,6 +77,14 @@ a:hover { color: var(--red-dark); }
   background: var(--ink); color: #fff; padding: 12px 20px; z-index: 300;
 }
 .skip:focus { left: 0; top: 0; color: #fff; }
+
+/* Text carried only by the accessible name — the compare icon it accompanies
+   is decorative. */
+.sr {
+  position: absolute; width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+}
 
 /* --------------------------------- shell -------------------------------- */
 
@@ -130,7 +149,7 @@ a:hover { color: var(--red-dark); }
 .rail-email {
   display: block; margin-top: 10px;
   font-size: .8rem; color: var(--ink-soft); text-decoration: none;
-  word-break: break-all;      /* the address is long for a 290px rail */
+  overflow-wrap: anywhere;    /* the address is long for a 290px rail */
 }
 .rail-email:hover { color: var(--red); }
 .rail-note { font-size: .83rem; color: var(--ink-mute); margin: 12px 0 14px; }
@@ -149,15 +168,23 @@ a:hover { color: var(--red-dark); }
 
 .body { min-width: 0; }
 
+/* The section itself runs full width so its border-top does too — capping .sec
+   also capped the rule, which left the divider stopping mid-page on wide
+   screens. The cap moves to a single grid column instead of a max-width on the
+   children, so it does not out-specify measures set on the children themselves
+   (h1 sets its own, and a `.sec > *` rule would win against it). */
+.sec, .intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1180px);
+}
+
 .sec {
   padding: clamp(56px, 7vw, 104px) clamp(28px, 5vw, 76px);
   border-top: 1px solid var(--line);
-  max-width: 1180px;
 }
 
 .intro {
   padding: clamp(64px, 9vw, 132px) clamp(28px, 5vw, 76px) clamp(56px, 7vw, 104px);
-  max-width: 1180px;
 }
 
 /* --------------------------------- type --------------------------------- */
@@ -171,9 +198,19 @@ h1, h2, h3 {
   margin: 0 0 .5em;
 }
 
-h1 { font-size: clamp(2rem, 3.8vw, 3.2rem); }
+/* Capped and balanced instead of broken by hand, so the headline sets itself
+   at every width. .accent takes its own line as the payoff. */
+h1 {
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  max-width: 28ch;
+  text-wrap: balance;
+}
+h1 .accent { display: block; }
+
 h2 { font-size: clamp(1.7rem, 2.9vw, 2.3rem); margin: 0; }
-h3 { font-size: 1.1rem; margin: 0 0 .4em; }
+/* Was 1.1rem against a 1.0625rem body — the service titles barely outranked
+   their own paragraphs. */
+h3 { font-size: 1.3rem; margin: 0 0 .45em; }
 
 .eyebrow {
   font-size: .7rem; font-weight: 700;
@@ -188,7 +225,6 @@ h3 { font-size: 1.1rem; margin: 0 0 .4em; }
 .accent { color: var(--red); }
 
 .sec-head { margin-bottom: clamp(30px, 4vw, 48px); max-width: 52ch; }
-.sec-head .sub { color: var(--ink-mute); margin: 1rem 0 0; font-size: .95rem; }
 
 /* -------------------------------- buttons ------------------------------- */
 
@@ -204,7 +240,9 @@ h3 { font-size: 1.1rem; margin: 0 0 .4em; }
 }
 .btn:hover { background: var(--red-dark); border-color: var(--red-dark); color: #fff; }
 .btn-lg { padding: 15px 30px; font-size: 1rem; }
-.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+/* Secondary buttons carry a fill as well as a border. Relying on the border
+   alone left them with no boundary a low-vision reader could find. */
+.btn-ghost { background: var(--sand); color: var(--ink); border-color: var(--line-firm); }
 .btn-ghost:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
 
 .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 0; }
@@ -220,23 +258,34 @@ h3 { font-size: 1.1rem; margin: 0 0 .4em; }
 .cta-stack > :first-child { grid-column: 1 / -1; }
 .cta-stack .btn { text-align: center; padding-inline: 16px; }
 
-/* Email and Facebook are secondary to Call, so they sit shorter and carry a
-   firmer border - the default ghost outline is nearly invisible against the
-   off-white page at this size. */
+/* Email and Facebook are secondary to Call, so they sit shorter. The fill and
+   border now come from .btn-ghost itself. */
 .cta-stack .btn-ghost {
   padding-block: 12px;
   font-size: .93rem;
-  border-color: #CFC8BF;
   align-self: start;
 }
 
 /* ------------------------------- services ------------------------------- */
 
+/* Capped at two columns. Five items in the old three-column auto-fit grid left
+   the last cell empty, so the second row's hairline stopped halfway across.
+   The track floor is `max(290px, half the container)`, which forces at most two
+   columns from the container itself — a viewport media query would get this
+   wrong, since the rail drops out below 900px and the content column is
+   actually wider at 880px than at 1000px.
+   With never more than two columns, the odd fifth item can always claim the
+   full closing row, and `1 / -1` stays correct when there is only one. */
 .svc {
+  --svc-gap: clamp(28px, 4vw, 56px);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  column-gap: clamp(28px, 4vw, 56px);
+  column-gap: var(--svc-gap);
+  grid-template-columns:
+    repeat(auto-fit, minmax(max(290px, calc((100% - var(--svc-gap)) / 2)), 1fr));
 }
+
+.svc-item:last-child { grid-column: 1 / -1; }
+.svc-item:last-child p { max-width: 62ch; }
 
 .svc-item {
   padding: 24px 0;
@@ -247,10 +296,16 @@ h3 { font-size: 1.1rem; margin: 0 0 .4em; }
 
 /* --------------------------------- work --------------------------------- */
 
+/* Phones get a 150px track so twelve 3:4 portrait tiles land two-up instead of
+   stacking into roughly 6,000px of scroll. Anything wider keeps the original
+   230px track — carrying 150px up to the desktop produced six cramped columns. */
 .gallery {
   list-style: none; margin: 0; padding: 0;
   display: grid; gap: 12px;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+@media (min-width: 700px) {
+  .gallery { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
 }
 
 .shot {
@@ -351,7 +406,9 @@ h3 { font-size: 1.1rem; margin: 0 0 .4em; }
 
 .lightbox {
   position: fixed; inset: 0; z-index: 300;
-  background: rgba(17,18,22,.975);
+  /* Solid: at .975 the rail and headings ghosted through behind the photos and
+     read as a rendering artifact rather than a scrim. */
+  background: #111216;
   display: flex; align-items: center; justify-content: center;
   padding: 24px; overflow-y: auto;
 }
@@ -433,7 +490,9 @@ h3 { font-size: 1.1rem; margin: 0 0 .4em; }
 @media (max-width: 760px) {
   .lightbox { padding: 56px 14px 24px; }
   .lb-frames { flex-direction: column; align-items: center; gap: 22px; }
-  .lb-fig img { max-height: 60vh; }
+  /* Both frames have to fit the viewport at once — at 60vh you had to scroll
+     from before to after, which is no longer a comparison. */
+  .lb-fig img { max-height: 36vh; }
 }
 
 @media (max-width: 420px) {

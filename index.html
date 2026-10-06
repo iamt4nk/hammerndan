@@ -5,13 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hammer &amp; Dan — Handyman Services | Salisbury, MA</title>
 <meta name="description" content="Handyman services based in Salisbury, MA. Doors, windows, floating flooring, trim, decks, siding, railings, shed doors and shelving. Small jobs, big results. Call (978) 504-6355.">
+<meta name="theme-color" content="#F3F0EC">
 <link rel="icon" href="images/logo.jpg">
+<link rel="canonical" href="https://iamt4nk.github.io/hammerndan/">
 <link rel="stylesheet" href="style.css">
 
+<!-- Open Graph needs absolute URLs — a relative og:image is silently dropped by
+     Facebook's crawler, which is the one place this link gets shared. Update
+     every absolute URL here (and in the JSON-LD below) if the site moves to a
+     custom domain. -->
 <meta property="og:title" content="Hammer &amp; Dan — Handyman Services | Salisbury, MA">
 <meta property="og:description" content="Doors, windows, floating flooring, trim, decks and siding. Small jobs, big results.">
-<meta property="og:image" content="images/logo.jpg">
+<meta property="og:image" content="https://iamt4nk.github.io/hammerndan/images/logo.jpg">
+<meta property="og:url" content="https://iamt4nk.github.io/hammerndan/">
 <meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "Hammer & Dan — Handyman Services",
+  "description": "Handyman services based in Salisbury, Massachusetts. Doors, windows, floating flooring, trim, decks, siding, railings, shed doors and shelving.",
+  "url": "https://iamt4nk.github.io/hammerndan/",
+  "image": "https://iamt4nk.github.io/hammerndan/images/logo.jpg",
+  "logo": "https://iamt4nk.github.io/hammerndan/images/logo.jpg",
+  "telephone": "+1-978-504-6355",
+  "email": "hammeranddan@gmail.com",
+  "slogan": "Small jobs, big results.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Salisbury",
+    "addressRegion": "MA",
+    "addressCountry": "US"
+  },
+  "areaServed": [
+    { "@type": "AdministrativeArea", "name": "Essex County, Massachusetts" },
+    { "@type": "AdministrativeArea", "name": "New Hampshire" }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/p/Hammer-Dan-handyman-services-61594591340683/"
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -45,7 +80,7 @@
 
       <div class="rail-foot">
         <a class="rail-phone" href="tel:+19785046355">(978)&nbsp;504-6355</a>
-        <a class="rail-email" href="mailto:hammeranddan@gmail.com">hammeranddan@gmail.com</a>
+        <a class="rail-email" href="mailto:hammeranddan@gmail.com?subject=Estimate%20request">hammeranddan@gmail.com</a>
         <p class="rail-note">Salisbury, Massachusetts</p>
         <a class="rail-fb" href="https://www.facebook.com/p/Hammer-Dan-handyman-services-61594591340683/" target="_blank" rel="noopener">Facebook &rarr;</a>
       </div>
@@ -58,13 +93,16 @@
     <!-- intro -->
     <section id="intro" class="intro">
       <p class="eyebrow">Small Jobs <span class="dot">&bull;</span> Big Results</p>
-      <h1>Doors, windows, flooring,<br>trim, decks and siding.<br><span class="accent">Done right, the first time.</span></h1>
+      <!-- No hard breaks: the measure is capped in CSS and balanced, so the
+           headline sets itself at every width instead of orphaning "flooring,"
+           on a phone. -->
+      <h1>Doors, windows, flooring, trim, decks and siding. <span class="accent">Done right, the first time.</span></h1>
       <p class="lede">
         A handyman service based in Salisbury, Massachusetts. No job is too small.
       </p>
       <div class="cta-stack">
         <a class="btn btn-lg" href="tel:+19785046355">Call (978)&nbsp;504-6355</a>
-        <a class="btn btn-lg btn-ghost" href="mailto:hammeranddan@gmail.com">Email</a>
+        <a class="btn btn-lg btn-ghost" href="mailto:hammeranddan@gmail.com?subject=Estimate%20request">Email</a>
         <a class="btn btn-lg btn-ghost" href="https://www.facebook.com/p/Hammer-Dan-handyman-services-61594591340683/" target="_blank" rel="noopener">Facebook</a>
       </div>
     </section>
@@ -125,10 +163,10 @@
              data-after="images/work/full/barn-shed-doors-after.jpg"
              data-label="Shed doors rebuilt">
             <span class="frames">
-              <img class="f-before" src="images/work/barn-shed-doors-before.jpg" alt="Barn-roof shed with weathered dark green cross-braced doors" loading="lazy" width="600" height="800">
+              <img class="f-before" src="images/work/barn-shed-doors-before.jpg" alt="" loading="lazy" width="600" height="800">
               <img class="f-after" src="images/work/barn-shed-doors-after.jpg" alt="The same shed with newly built natural wood cross-braced doors" loading="lazy" width="600" height="800">
             </span>
-            <span class="tag" aria-hidden="true"></span>
+            <span class="tag" aria-hidden="true"></span><span class="sr">Before and after</span>
             <span class="cap">Shed doors rebuilt</span>
           </a>
         </li>
@@ -139,10 +177,10 @@
              data-after="images/work/full/shed-doors-after.jpg"
              data-label="Shed doors replaced">
             <span class="frames">
-              <img class="f-before" src="images/work/shed-doors-before.jpg" alt="Red shed with weathered grey double doors and an old wooden ramp" loading="lazy" width="600" height="800">
+              <img class="f-before" src="images/work/shed-doors-before.jpg" alt="" loading="lazy" width="600" height="800">
               <img class="f-after" src="images/work/shed-doors-after.jpg" alt="The same shed fitted with new natural wood double doors" loading="lazy" width="600" height="800">
             </span>
-            <span class="tag" aria-hidden="true"></span>
+            <span class="tag" aria-hidden="true"></span><span class="sr">Before and after</span>
             <span class="cap">Shed doors replaced</span>
           </a>
         </li>
@@ -153,25 +191,25 @@
              data-after="images/work/full/blue-porch-after.jpg"
              data-label="Storm door replaced with a new entry door">
             <span class="frames">
-              <img class="f-before" src="images/work/blue-porch-before.jpg" alt="Porch with an old aluminium storm door and narrow casing" loading="lazy" width="600" height="800">
+              <img class="f-before" src="images/work/blue-porch-before.jpg" alt="" loading="lazy" width="600" height="800">
               <img class="f-after" src="images/work/blue-porch-after.jpg" alt="The same porch with a new three-light entry door and wider trim" loading="lazy" width="600" height="800">
             </span>
-            <span class="tag" aria-hidden="true"></span>
-            <span class="cap">Storm door replaced with a new entry door</span>
+            <span class="tag" aria-hidden="true"></span><span class="sr">Before and after</span>
+            <span class="cap">New entry door fitted</span>
           </a>
         </li>
 
         <li class="shot-item">
           <a class="shot" href="images/work/full/barn-door-interior.jpg" data-label="Barn door sized, hung and trimmed out">
             <span class="frames"><img src="images/work/barn-door-interior.jpg" alt="Interior barn door hung on a black rail above a wood floor" loading="lazy" width="600" height="800"></span>
-            <span class="cap">Barn door sized, hung and trimmed out</span>
+            <span class="cap">Barn door hung and trimmed</span>
           </a>
         </li>
 
         <li class="shot-item">
           <a class="shot" href="images/work/full/bathroom-floating-floor.jpg" data-label="Floating floor in a first-floor bathroom">
             <span class="frames"><img src="images/work/bathroom-floating-floor.jpg" alt="Bathroom with a newly laid grey vinyl plank floating floor" loading="lazy" width="600" height="800"></span>
-            <span class="cap">Floating floor in a first-floor bathroom</span>
+            <span class="cap">Bathroom floating floor</span>
           </a>
         </li>
 
@@ -181,10 +219,10 @@
              data-after="images/work/full/clapboard-shed-after.jpg"
              data-label="Shed door and ramp rebuilt">
             <span class="frames">
-              <img class="f-before" src="images/work/clapboard-shed-before.jpg" alt="Clapboard shed with rotted louvered double doors and a mossy wooden step" loading="lazy" width="600" height="800">
+              <img class="f-before" src="images/work/clapboard-shed-before.jpg" alt="" loading="lazy" width="600" height="800">
               <img class="f-after" src="images/work/clapboard-shed-after.jpg" alt="The same shed with a newly built wood door and a fresh plywood ramp" loading="lazy" width="600" height="800">
             </span>
-            <span class="tag" aria-hidden="true"></span>
+            <span class="tag" aria-hidden="true"></span><span class="sr">Before and after</span>
             <span class="cap">Shed door and ramp rebuilt</span>
           </a>
         </li>
@@ -220,21 +258,21 @@
         <li class="shot-item">
           <a class="shot" href="images/work/full/entry-door-finished.jpg" data-label="New entry door, trimmed and finished">
             <span class="frames"><img src="images/work/entry-door-finished.jpg" alt="New white entry door set into dark wood siding, trimmed and finished" loading="lazy" width="600" height="800"></span>
-            <span class="cap">New entry door, trimmed and finished</span>
+            <span class="cap">Entry door, trimmed out</span>
           </a>
         </li>
 
-        <li class="shot-item">
+        <li class="shot-item is-pair">
           <a class="shot" href="images/work/full/table-legs-after.jpg"
              data-before="images/work/full/table-legs-before.jpg"
              data-after="images/work/full/table-legs-after.jpg"
              data-label="Table legs blocked up and trimmed">
             <span class="frames">
-              <img class="f-before" src="images/work/table-legs-before.jpg" alt="Turned table leg sitting straight on the floor at its original height" loading="lazy" width="600" height="800">
+              <img class="f-before" src="images/work/table-legs-before.jpg" alt="" loading="lazy" width="600" height="800">
               <img class="f-after" src="images/work/table-legs-after.jpg" alt="The same leg raised on a newly built and trimmed wood block base" loading="lazy" width="600" height="800">
             </span>
-            <span class="tag" aria-hidden="true"></span>
-            <span class="cap">Table legs blocked up and trimmed</span>
+            <span class="tag" aria-hidden="true"></span><span class="sr">Before and after</span>
+            <span class="cap">Table legs blocked up</span>
           </a>
         </li>
 
@@ -287,11 +325,11 @@
       </header>
 
       <a class="phone" href="tel:+19785046355">(978) 504-6355</a>
-      <p class="email"><a href="mailto:hammeranddan@gmail.com">hammeranddan@gmail.com</a></p>
+      <p class="email"><a href="mailto:hammeranddan@gmail.com?subject=Estimate%20request">hammeranddan@gmail.com</a></p>
       <p class="based">Salisbury, Massachusetts</p>
       <p class="cta-row">
         <a class="btn btn-lg" href="tel:+19785046355">Call now</a>
-        <a class="btn btn-lg btn-ghost" href="mailto:hammeranddan@gmail.com">Send an email</a>
+        <a class="btn btn-lg btn-ghost" href="mailto:hammeranddan@gmail.com?subject=Estimate%20request">Send an email</a>
         <a class="btn btn-lg btn-ghost" href="https://www.facebook.com/p/Hammer-Dan-handyman-services-61594591340683/" target="_blank" rel="noopener">Message on Facebook</a>
       </p>
 
@@ -420,7 +458,11 @@
   closeBtn.addEventListener("click", closeBox);
   box.addEventListener("click", function (e) { if (e.target === box) closeBox(); });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && !box.hidden) closeBox();
+    if (box.hidden) return;
+    if (e.key === "Escape") { closeBox(); return; }
+    /* Close is the only focusable thing in the dialog, so Tab holds focus on it
+       rather than walking out into the page behind the overlay. */
+    if (e.key === "Tab") { e.preventDefault(); closeBtn.focus(); }
   });
 })();
 </script>
