@@ -354,6 +354,18 @@
     sections.forEach(function (s) { spy.observe(s); });
   }
 
+  /* The sticky call bar repeats the hero's Call button while the hero is still
+     on screen — two red bars at once. Hold it back until the intro scrolls by. */
+  var bar = document.querySelector(".callbar");
+  var intro = document.getElementById("intro");
+  if (bar && intro && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      bar.classList.toggle("show", !entries[0].isIntersecting);
+    }, { rootMargin: "-80px 0px 0px 0px" }).observe(intro);
+  } else if (bar) {
+    bar.classList.add("show");
+  }
+
   /* Lightbox — one photo, or a before/after pair side by side */
   var box = document.getElementById("lightbox");
   var imgA = document.getElementById("lbImgA");

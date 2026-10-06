@@ -220,6 +220,16 @@ h3 { font-size: 1.1rem; margin: 0 0 .4em; }
 .cta-stack > :first-child { grid-column: 1 / -1; }
 .cta-stack .btn { text-align: center; padding-inline: 16px; }
 
+/* Email and Facebook are secondary to Call, so they sit shorter and carry a
+   firmer border - the default ghost outline is nearly invisible against the
+   off-white page at this size. */
+.cta-stack .btn-ghost {
+  padding-block: 12px;
+  font-size: .93rem;
+  border-color: #CFC8BF;
+  align-self: start;
+}
+
 /* ------------------------------- services ------------------------------- */
 
 .svc {
@@ -416,7 +426,7 @@ h3 { font-size: 1.1rem; margin: 0 0 .4em; }
   .rail-foot { display: none; }
 
   html { scroll-padding-top: 76px; }
-  .callbar { display: block; }
+  .callbar.show { display: block; }
   body { padding-bottom: 62px; }
 }
 
