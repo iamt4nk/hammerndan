@@ -127,6 +127,12 @@ a:hover { color: var(--red-dark); }
   border-bottom: 2px solid var(--red); padding-bottom: 6px;
 }
 .rail-phone:hover { color: var(--red); }
+.rail-email {
+  display: block; margin-top: 10px;
+  font-size: .8rem; color: var(--ink-soft); text-decoration: none;
+  word-break: break-all;      /* the address is long for a 290px rail */
+}
+.rail-email:hover { color: var(--red); }
 .rail-note { font-size: .83rem; color: var(--ink-mute); margin: 12px 0 14px; }
 .rail-fb { font-size: .85rem; font-weight: 600; text-decoration: none; }
 
@@ -313,7 +319,11 @@ h3 { font-size: 1.1rem; margin: 0 0 .4em; }
 }
 .phone:hover { color: var(--red); }
 
-.based { font-size: .9rem; color: var(--ink-mute); margin: 1.1rem 0 2rem; }
+.email { margin: 1rem 0 0; font-size: 1.05rem; }
+.email a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+.email a:hover { color: var(--red); border-bottom-color: var(--red); }
+
+.based { font-size: .9rem; color: var(--ink-mute); margin: .7rem 0 2rem; }
 .copy { font-size: .82rem; color: var(--ink-mute); margin: 3.4rem 0 0; }
 
 /* ------------------------------- lightbox ------------------------------- */
