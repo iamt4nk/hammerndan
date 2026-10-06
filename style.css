@@ -286,6 +286,7 @@ h3 { font-size: 1.3rem; margin: 0 0 .45em; }
    full closing row, and `1 / -1` stays correct when there is only one. */
 .svc {
   --svc-gap: clamp(28px, 4vw, 56px);
+  container-type: inline-size;
   display: grid;
   column-gap: var(--svc-gap);
   grid-template-columns:
@@ -295,19 +296,32 @@ h3 { font-size: 1.3rem; margin: 0 0 .45em; }
 .svc-item:last-child { grid-column: 1 / -1; }
 .svc-item:last-child p { max-width: 62ch; }
 
-/* These stop inside the layout rather than running to an edge, so they taper at
-   both ends. The ramps are absolute lengths, not percentages: a percentage ramp
-   stretches with the rule, so the same gradient read clearly on a narrow phone
-   rule and vanished across a wide desktop one. 80px fades identically at every
-   width. */
+/* Solid by default. At one column every rule spans the full width, and a
+   full-width rule has no terminus to soften. */
 .svc-item {
   padding: 24px 0;
-  background-image: linear-gradient(to right,
-    transparent 0, var(--rule) 80px,
-    var(--rule) calc(100% - 80px), transparent 100%);
-  background-size: 100% 1px;
-  background-repeat: no-repeat;
-  background-position: left top;
+  border-top: 1px solid var(--line);
+}
+
+/* Once the grid splits in two, the column rules stop inside the layout and get
+   the taper. This is a container query, not a media query, because the column
+   count follows the width of .svc rather than the viewport — the rail drops out
+   below 900px, so two columns occur at 705-899px AND again above ~1045px, a
+   disjoint range no single media query can express.
+   :last-child is excluded: it still spans the full row, so it stays solid.
+   The ramps are absolute lengths, not percentages — a percentage ramp stretches
+   with the rule, which is why the same gradient read clearly on a phone and
+   vanished across a wide desktop rule. */
+@container (min-width: 636px) {
+  .svc-item:not(:last-child) {
+    border-top: 0;
+    background-image: linear-gradient(to right,
+      transparent 0, var(--rule) 80px,
+      var(--rule) calc(100% - 80px), transparent 100%);
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: left top;
+  }
 }
 .svc-item h3 { color: var(--ink); }
 .svc-item p { margin: 0; font-size: .95rem; }
