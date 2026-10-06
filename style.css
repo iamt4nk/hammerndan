@@ -178,9 +178,16 @@ a:hover { color: var(--red-dark); }
   grid-template-columns: minmax(0, 1180px);
 }
 
+/* The divider is a gradient rather than a border so it can fade out. It holds
+   solid from the rail edge and dissolves across the last third, which lets the
+   rule stop without the hard terminus of a cut-off border. */
 .sec {
   padding: clamp(56px, 7vw, 104px) clamp(28px, 5vw, 76px);
-  border-top: 1px solid var(--line);
+  background-image: linear-gradient(to right,
+    var(--line) 0%, var(--line) 62%, transparent 100%);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: left top;
 }
 
 .intro {
@@ -287,9 +294,15 @@ h3 { font-size: 1.3rem; margin: 0 0 .45em; }
 .svc-item:last-child { grid-column: 1 / -1; }
 .svc-item:last-child p { max-width: 62ch; }
 
+/* Same treatment, but these rules sit inside the column rather than running off
+   the edge of it, so they fade at both ends and hold solid through the middle. */
 .svc-item {
   padding: 24px 0;
-  border-top: 1px solid var(--line);
+  background-image: linear-gradient(to right,
+    transparent 0%, var(--line) 14%, var(--line) 86%, transparent 100%);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: left top;
 }
 .svc-item h3 { color: var(--ink); }
 .svc-item p { margin: 0; font-size: .95rem; }
